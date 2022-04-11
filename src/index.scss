@@ -5,6 +5,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #e7f6ff;
 }
+*{
+  font-family: 'Inter' ;
+}
 
 .wrapper {
   // position: absolute;
@@ -61,13 +64,27 @@ header {
 
 .content {
   padding: 40px;
+  >div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    input{
+      border: 0;
+      padding: 0 13px 0px 1px;
+      font-size: 16px;
+      width: 200px;
+      
+    }
+  }
   h1 {
     margin: 0;
-    margin-bottom: 40px;
+    
   }
   .products{
     display: flex;
   }
+ 
 }
 
 
@@ -110,4 +127,11 @@ header {
   height: 32px;
   width: 32px;
   cursor: pointer;
+}
+
+.search-block{
+  border: 1px solid #817e7e;
+  display: flex;
+  border-radius: 10px;
+  padding: 0 15px;
 }
