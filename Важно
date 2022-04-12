@@ -1,0 +1,8 @@
+  /* .cartItemImg {
+    height: 70px;
+    width: 70px;
+    background-size: contain; //важные моменты
+    background-position: 0 10px;
+    background-repeat: no-repeat;
+  }
+} */
