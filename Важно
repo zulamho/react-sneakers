@@ -6,3 +6,13 @@
     background-repeat: no-repeat;
   }
 } */
+//flex ; 1
+border-bottom: 1px dashed #DFDFDF;
+position: relative;
+
+&:hover{
+  background: lighten( #9dd558, 4%);
+}
+
+overflow: hidden;
+overflow: auto;
