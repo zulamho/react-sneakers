@@ -1,9 +1,10 @@
-function Drawer() {
+function Drawer(props) {
   return (
+  <div  className="overlay">
     <div className="drawer">
       <h2>
         Корзина{" "}
-        <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+        <img onClick={props.onClose} className="removeBtn" src="/img/btn-remove.svg" alt="Close" />
       </h2>
       <div className="items">
         <div className="cartItem">
@@ -44,6 +45,7 @@ function Drawer() {
       <button className="greenButton">
         Оформить заказ <img width={14} height={12} src="/img/arrow.svg" />
       </button>
+    </div>
     </div>
   );
 }
