@@ -69,7 +69,7 @@ function App() {
           </div>
         </div>
         <div className="products">
-          {products.map((product, index) => (
+          {products.filter(product => product.title.includes(searchProduct) ).map((product, index) => (
             <Card
               key={index}
               title={product.title}

@@ -51,3 +51,5 @@ key prop vajno https://www.youtube.com/watch?v=OtAlPwW8DNU
 
   
 ];prev>[...prev, obj]
+
+ {products.filter(product => product.title.includes(searchProduct) ).map((product, index) => (
