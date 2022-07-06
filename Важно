@@ -53,3 +53,20 @@ key prop vajno https://www.youtube.com/watch?v=OtAlPwW8DNU
 ];prev>[...prev, obj]
 
  {products.filter(product => product.title.includes(searchProduct) ).map((product, index) => (
+
+
+  React.useEffect(() => {
+    fetch("https://62b339dda36f3a973d1e470f.mockapi.io/products")
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setProducts(json);
+      });
+
+      axios.get("https://62b339dda36f3a973d1e470f.mockapi.io/products").then((res) =>{
+        setProducts(res.data);
+      })
+  }, []); //разница
+
+    line-height: 24px;
