@@ -70,3 +70,8 @@ key prop vajno https://www.youtube.com/watch?v=OtAlPwW8DNU
   }, []); //разница
 
     line-height: 24px;
+    \
+
+
+    // доделать кнопку вернуться назад в корзине
+    // доделать верстку съезда при отрытии корзины

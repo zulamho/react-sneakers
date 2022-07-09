@@ -45,7 +45,7 @@ function Drawer({ onClose, onRemove, products = [] }) {
                 </li>
               </ul>
               <button className="greenButton">
-                Оформить заказ <img  src="/img/arrow.svg" alt="Arrow" />
+                Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
@@ -54,8 +54,8 @@ function Drawer({ onClose, onRemove, products = [] }) {
             <img src="/img/empty-cart.svg" alt="emptyCart" />
             <h2>Корзина пустая</h2>
             <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ</p>
-            <button className="greenButton">
-               <img src="/img/arrow.svg" alt="Arrow" /> Вернуться назад
+            <button className="greenButton" onClick={onClose}>
+              <img src="/img/arrow.svg" alt="Arrow" /> Вернуться назад
             </button>
           </div>
         )}
