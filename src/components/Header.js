@@ -9,8 +9,9 @@ function Header(props) {
         </Link>
 
         <div className="infoNameShop">
-          <h3>React sneakers</h3>
-          <p>Магазин лучших кроссовок</p>
+          <h3>Sneaker store</h3>
+          <p>
+SHOP THE BEST SNEAKERS</p>
         </div>
       </div>
       <ul className="headerRigth headerBuutoms">

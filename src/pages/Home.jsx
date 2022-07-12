@@ -1,6 +1,7 @@
 import Card from "../components/Card";
 function Home({
   products,
+  cartProducts,
   searchProduct,
   setSearchProduct,
   onAddFavorite,
@@ -43,11 +44,14 @@ function Home({
               key={index}
               {...product}
               //id={product.id}
-            //   title={product.title}
-            //   price={product.price}
-            //   imgUrl={product.imgUrl}
+              //   title={product.title}
+              //   price={product.price}
+              //   imgUrl={product.imgUrl}
               onClickFavorite={(product) => onAddFavorite(product)}
               onPlus={(product) => onAddToCart(product)}
+              added={cartProducts.some(
+                (item) => Number(item.id) === Number(product.id)
+              )}
             />
           ))}
       </div>
