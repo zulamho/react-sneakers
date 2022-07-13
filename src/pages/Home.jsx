@@ -7,7 +7,27 @@ function Home({
   onAddFavorite,
   onAddToCart,
   onChangeSearchInput,
+  isLoading,
 }) {
+  const renderProducts = () => {
+    const filtredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchProduct.toLowerCase())
+    );
+    return (isLoading ? [...Array(10)] : filtredProducts).map(
+      (product, index) => (
+        <Card
+          key={index}
+          onClickFavorite={(product) => onAddFavorite(product)}
+          onPlus={(product) => onAddToCart(product)}
+          added={cartProducts.some(
+            (item) => Number(item.id) === Number(product.id)
+          )}
+          loading={isLoading}
+          {...product}
+        />
+      )
+    );
+  };
   return (
     <div className="content">
       <div>
@@ -34,27 +54,7 @@ function Home({
           )}
         </div>
       </div>
-      <div className="products">
-        {products
-          .filter((product) =>
-            product.title.toLowerCase().includes(searchProduct.toLowerCase())
-          )
-          .map((product, index) => (
-            <Card
-              key={index}
-              {...product}
-              //id={product.id}
-              //   title={product.title}
-              //   price={product.price}
-              //   imgUrl={product.imgUrl}
-              onClickFavorite={(product) => onAddFavorite(product)}
-              onPlus={(product) => onAddToCart(product)}
-              added={cartProducts.some(
-                (item) => Number(item.id) === Number(product.id)
-              )}
-            />
-          ))}
-      </div>
+      <div className="products">{renderProducts()}</div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import ContentLoader from "react-content-loader";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Card from "./components/Card";
@@ -16,9 +17,11 @@ function App() {
   const [cartProducts, setCartProducts] = React.useState([]);
   const [searchProduct, setSearchProduct] = React.useState("");
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       const cartResponse = await axios.get(
         "https://62b339dda36f3a973d1e470f.mockapi.io/cart"
       );
@@ -29,12 +32,14 @@ function App() {
       const productsResponse = await axios.get(
         "https://62b339dda36f3a973d1e470f.mockapi.io/products"
       );
+      setIsLoading(false);
+
       setCartProducts(cartResponse.data);
       setFavorites(favoritesResponse.data);
       setProducts(productsResponse.data);
     }
 
-    fetchData()
+    fetchData();
   }, []);
 
   const onAddToCart = (product) => {
@@ -103,6 +108,7 @@ function App() {
               setSearchProduct={setSearchProduct}
               onAddFavorite={onAddFavorite}
               onAddToCart={onAddToCart}
+              isLoading={isLoading}
             />
           }
         />
