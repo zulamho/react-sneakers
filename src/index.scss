@@ -46,7 +46,7 @@ header {
     display: flex;
     align-items: center;
   }
-  .headerBuutoms{
+  .headerBuutoms {
     cursor: pointer;
   }
   h3,
@@ -146,7 +146,7 @@ header {
     width: 200px;
     outline: none;
   }
-  .clear{
+  .clear {
     position: absolute;
     right: 0;
     width: 18px;
@@ -177,7 +177,7 @@ header {
   padding: 30px;
   display: flex;
   flex-direction: column;
-  .items{
+  .items {
     overflow: auto;
     margin-bottom: 40px;
   }
@@ -214,6 +214,15 @@ header {
   color: #ffffff;
   font-size: 16px;
   font-weight: 400;
+
+  &:disabled{
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
+  &:disabled{
+    animation: button-loading 0.2 ease-in-out;
+  }
   &:hover {
     img {
       transform: translateX(15px);
@@ -237,7 +246,6 @@ header {
 }
 
 .cartTotalBlock {
-
   margin-bottom: 40px;
   li {
     margin-bottom: 10px;
@@ -294,26 +302,40 @@ header {
   flex: 1;
 }
 
-.cartEmpty{
+.cartEmpty {
   text-align: center;
-  p{
+  p {
     width: 288px;
     line-height: 24px;
   }
-  .greenButton{
+
+  .greenButton {
     width: 245px;
     margin-top: 20px;
-    &:hover{
-      img{
-        transform: rotate(180deg)translateX(3px);
+ 
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
       }
     }
-    img{
+    img {
       position: relative;
-      top:1px;
+      top: 1px;
       transform: rotate(180deg);
       margin-right: 15px;
       transition: transform 0.15s ease-in-out;
     }
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
   }
 }
