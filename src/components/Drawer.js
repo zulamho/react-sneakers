@@ -33,7 +33,7 @@ function Drawer({ onClose, onRemove, products = [] }) {
     } catch (error) {
       alert("Не удалось отправить заказ");
     }
-
+    setIsLoading(false);
   };
 
   return (
