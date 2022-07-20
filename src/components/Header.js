@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../context";
+import { useCart } from "./hooks/useCart"
 function Header(props) {
-  const { cartProducts } = React.useContext(AppContext);
+  // const { cartProducts } = React.useContext(AppContext);
 
-  const totalPrice = cartProducts.reduce(
-    (sum, product) => product.price + sum,
-    0
-  );
+  // const totalPrice = cartProducts.reduce(
+  //   (sum, product) => product.price + sum,
+  //   0
+  // );
+
+  const {cartProducts, setCartProducts , totalPrice} = useCart() // кастоомный хук
 
   return (
     <header>
