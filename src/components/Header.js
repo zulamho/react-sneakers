@@ -1,6 +1,14 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import AppContext from "../context";
 function Header(props) {
-  console.log(props);
+  const { cartProducts } = React.useContext(AppContext);
+
+  const totalPrice = cartProducts.reduce(
+    (sum, product) => product.price + sum,
+    0
+  );
+
   return (
     <header>
       <div className="headerLeft">
@@ -10,8 +18,7 @@ function Header(props) {
 
         <div className="infoNameShop">
           <h3>Sneaker store</h3>
-          <p>
-SHOP THE BEST SNEAKERS</p>
+          <p>SHOP THE BEST SNEAKERS</p>
         </div>
       </div>
       <ul className="headerRigth headerBuutoms">
@@ -24,7 +31,7 @@ SHOP THE BEST SNEAKERS</p>
             alt="Корзина"
           />
 
-          <span>1205 руб.</span>
+          <span>{totalPrice} руб.</span>
         </li>
         <li>
           <Link to="/favorites">
