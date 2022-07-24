@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Drawer from "./components/Drawer";
 import AppContext from "./context";
+import Orders from "./pages/Orders";
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -14,8 +15,6 @@ function App() {
   const [searchProduct, setSearchProduct] = React.useState("");
   const [cartOpened, setCartOpened] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
-
-  console.log(cartProducts)
 
   React.useEffect(() => {
     async function fetchData() {
@@ -56,11 +55,17 @@ function App() {
 
   const onAddFavorite = async (product) => {
     try {
-      if (favorites.find((favProduct) => Number(favProduct.id) == Number(product.id))) {
+      if (
+        favorites.find(
+          (favProduct) => Number(favProduct.id) == Number(product.id)
+        )
+      ) {
         axios.delete(
           `https://62b339dda36f3a973d1e470f.mockapi.io/favorites/${product.id}`
         );
-        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(product.id)));
+        setFavorites((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(product.id))
+        );
       } else {
         const { data } = await axios.post(
           "https://62b339dda36f3a973d1e470f.mockapi.io/favorites",
@@ -82,13 +87,23 @@ function App() {
     setSearchProduct(event.target.value);
   };
 
-  const isProductAdded = (id) =>{
-    return cartProducts.some(
-      (item) => Number(item.id) === Number(id))
-  } 
+  const isProductAdded = (id) => {
+    return cartProducts.some((item) => Number(item.id) === Number(id));
+  };
 
   return (
-    <AppContext.Provider value={{ products, favorites, cartProducts,setCartProducts,isProductAdded , setCartOpened}}>
+    <AppContext.Provider
+      value={{
+        products,
+        favorites,
+        cartProducts,
+        setCartProducts,
+        isProductAdded,
+        setCartOpened,
+        onAddFavorite,
+        onAddToCart
+      }}
+    >
       <div className="wrapper ">
         {cartOpened && (
           <Drawer
@@ -117,9 +132,11 @@ function App() {
           />
           <Route
             path="/favorites"
-            element={
-              <Favorites onAddFavorite={onAddFavorite} />
-            }
+            element={<Favorites onAddFavorite={onAddFavorite} />}
+          />
+            <Route
+            path="/Orders"
+            element={<Orders onAddFavorite={onAddFavorite} />}
           />
         </Routes>
       </div>
