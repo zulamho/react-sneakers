@@ -37,7 +37,7 @@ function Orders() {
           <Card
             key={index}
             favorited={true}
-            loading={isLoading}
+            loading={isLoading} 
             {...product}
           />
         ))}

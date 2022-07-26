@@ -82,3 +82,14 @@ key prop vajno https://www.youtube.com/watch?v=OtAlPwW8DNU
     //js/jsx
 
     //flat()  reduce()
+    some
+
+
+        visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    overflow: hidden
+    
+
+
+    react transition

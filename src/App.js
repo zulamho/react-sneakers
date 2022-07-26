@@ -39,17 +39,26 @@ function App() {
     fetchData();
   }, []);
 
-  const onAddToCart = (product) => {
-    if (cartProducts.find((item) => Number(item.id) === Number(product.id))) {
-      axios.delete(
-        `https://62b339dda36f3a973d1e470f.mockapi.io/cart/${product.id}`
-      );
-      setCartProducts((prev) =>
-        prev.filter((item) => Number(item.id) !== Number(product.id))
-      );
-    } else {
-      axios.post("https://62b339dda36f3a973d1e470f.mockapi.io/cart", product);
-      setCartProducts((prev) => [...prev, product]); ///важно
+  const onAddToCart = async (product) => {
+    try {
+      if (cartProducts.find((item) => Number(item.id) === Number(product.id))) {
+        setCartProducts((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(product.id))
+        );
+        await axios.delete(
+          `https://62b339dda36f3a973d1e470f.mockapi.io/cart/${product.id}`
+        );
+       
+      } else {
+        await axios.post(
+          "https://62b339dda36f3a973d1e470f.mockapi.io/cart",
+          product
+        );
+        setCartProducts((prev) => [...prev, product]); ///важно
+      }
+    } catch (error) {
+      alert("Не удалось добавить товар в корзиину");
+      console.error(error);
     }
   };
 
@@ -60,7 +69,7 @@ function App() {
           (favProduct) => Number(favProduct.id) == Number(product.id)
         )
       ) {
-        axios.delete(
+       await axios.delete(
           `https://62b339dda36f3a973d1e470f.mockapi.io/favorites/${product.id}`
         );
         setFavorites((prev) =>
@@ -75,12 +84,18 @@ function App() {
       }
     } catch (error) {
       alert("Не удалось добавить в закладки");
+      console.error(error);
     }
   };
 
   const onRemoveProductCart = (id) => {
-    axios.delete(`https://62b339dda36f3a973d1e470f.mockapi.io/cart/${id}`);
-    setCartProducts((prev) => prev.filter((product) => product.id !== id));
+    try {
+      axios.delete(`https://62b339dda36f3a973d1e470f.mockapi.io/cart/${id}`);
+      setCartProducts((prev) => prev.filter((product) => product.id !== id));
+    } catch (error) {
+      alert("Не удалось отправить запрос на удаление товара.");
+      console.error(error);
+    }
   };
 
   const onChangeSearchInput = (event) => {
@@ -101,17 +116,23 @@ function App() {
         isProductAdded,
         setCartOpened,
         onAddFavorite,
-        onAddToCart
+        onAddToCart,
       }}
     >
       <div className="wrapper ">
-        {cartOpened && (
+      <Drawer
+            onClose={() => setCartOpened(false)}
+            onRemove={onRemoveProductCart}
+            products={cartProducts}
+            opened={cartOpened}
+          />
+        {/* {cartOpened && (
           <Drawer
             onClose={() => setCartOpened(false)}
             onRemove={onRemoveProductCart}
             products={cartProducts}
           />
-        )}
+        )} */}
 
         <Header onClickCart={() => setCartOpened(true)} />
         <Routes>
@@ -134,7 +155,7 @@ function App() {
             path="/favorites"
             element={<Favorites onAddFavorite={onAddFavorite} />}
           />
-            <Route
+          <Route
             path="/Orders"
             element={<Orders onAddFavorite={onAddFavorite} />}
           />

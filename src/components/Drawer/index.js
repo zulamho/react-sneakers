@@ -1,12 +1,15 @@
 import React from "react";
 import axios from "axios";
-import Info from "./Info";
-import AppContext from "../context";
-import {useCart} from "./hooks/useCart"
+
+import Info from "../Info";
+import AppContext from "../../context";
+import {useCart} from "../hooks/useCart"
+
+import styles from './Drawer.module.scss'
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({ onClose, onRemove, products = [] }) {
+function Drawer({ onClose, onRemove, products = [], opened}) {
   // const { cartProducts, setCartProducts } = React.useContext(AppContext);
   const { cartProducts, setCartProducts , totalPrice } = useCart() // кастомный хук
   const [orderId, setOrderId] = React.useState(null);
@@ -41,8 +44,8 @@ function Drawer({ onClose, onRemove, products = [] }) {
   };
 
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened? styles.overlayVisible : '' }`}>
+      <div className={styles.drawer}>
         <h2>
           Корзина{" "}
           <img
