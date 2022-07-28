@@ -24,10 +24,11 @@
 
 
   .drawer {
+    
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 420px;
+    width: 385px;
     height: 100%;
     right: 0;
     background: #ffffff;
@@ -35,10 +36,14 @@
     padding: 30px;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+
+ 
   
     .items {
-      overflow: auto;
+      // overflow: auto;
       margin-bottom: 40px;
+      overflow-y: auto;
+      
     }
     h2 {
       margin: 0;
@@ -47,10 +52,10 @@
       justify-content: space-between;
       align-items: center;
   
-      .removeBtn {
+      .closeBtn {
         // opacity: 0.6;
         // transition: opacity 0.15s ease-in-out;
-        cursor: pointer;
+        cursor: pointer
         // &:hover {
         //   opacity: 1;
         // }
@@ -63,3 +68,142 @@
       display: flex;
     }
   }
+
+  .cartItem {
+    display: flex;
+    align-items: center;
+    border: 2px solid #d8d8d886;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 20px;
+    margin-bottom: 20px;
+    // img > {
+    //   margin-right: 20px;
+    // }
+    div {
+      margin-right: 20px;
+    }
+    div {
+      p {
+        margin: 0;
+        font-size: 16px;
+      }
+      b {
+        font-size: 14px;
+      }
+    }
+  
+    .cartItemImg {
+      height: 70px;
+      width: 70px;
+      background-size: contain; //важные моменты
+      background-position: 0 3px;
+      background-repeat: no-repeat;
+      margin-right: 20px;
+    }
+  }
+
+  .cartTotalBlock {
+    margin-bottom: 40px;
+    li {
+      margin-bottom: 10px;
+    }
+    div {
+      flex: 1;
+      border-bottom: 1px dashed #dfdfdf;
+      position: relative;
+      top: -3px;
+    }
+  }
+
+  .removeBtn {
+    opacity: 0.6;
+    transition: opacity 0.15s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .cartEmpty {
+    text-align: center;
+    p {
+      width: 288px;
+      line-height: 24px;
+    }
+  
+    .greenButton {
+      width: 245px;
+      margin-top: 20px;
+   
+      &:hover {
+        img {
+          transform: rotate(180deg) translateX(3px);
+        }
+      }
+      img {
+        position: relative;
+        top: 1px;
+        transform: rotate(180deg);
+        margin-right: 15px;
+        transition: transform 0.15s ease-in-out;
+      }
+    }
+  }
+
+  .greenButton {
+    width: 100%;
+    height: 55px;
+    background: #9dd558;
+    border-radius: 18px;
+    border: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+  
+    &:disabled{
+      background-color: #bebebe !important;
+      cursor: default;
+    }
+  
+    &:disabled{
+      animation: button-loading 0.2 ease-in-out;
+    }
+    &:hover {
+      img {
+        transform: translateX(15px);
+      }
+    }
+    img {
+      position: absolute;
+      right: 70px;
+      margin-top: 4px;
+      transition: transform 0.2s ease-in-out;
+    }
+  
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    &:hover {
+      background: lighten(#9dd558, 5%);
+    }
+    &:active {
+      background: darken(#9dd558, 5%);
+    }
+  }
+
+  .items {
+    flex: 1;
+  }
+
+  
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
+  }
+}

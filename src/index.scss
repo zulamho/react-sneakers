@@ -157,10 +157,6 @@ header {
   }
 }
 
-
-
-
-
 .greenButton {
   width: 100%;
   height: 55px;
@@ -171,24 +167,26 @@ header {
   font-size: 16px;
   font-weight: 400;
 
-  &:disabled{
+  &:disabled {
     background-color: #bebebe !important;
     cursor: default;
   }
 
-  &:disabled{
+  &:disabled {
     animation: button-loading 0.2 ease-in-out;
   }
   &:hover {
     img {
-      transform: translateX(15px);
+      transform: translateX(-15px);
     }
   }
   img {
     position: absolute;
-    right: 70px;
+
+    left: 70px;
     margin-top: 4px;
     transition: transform 0.2s ease-in-out;
+    transform: scale(1, -1);
   }
 
   cursor: pointer;
@@ -201,74 +199,19 @@ header {
   }
 }
 
-.cartTotalBlock {
-  margin-bottom: 40px;
-  li {
-    margin-bottom: 10px;
-  }
-  div {
-    flex: 1;
-    border-bottom: 1px dashed #dfdfdf;
-    position: relative;
-    top: -3px;
-  }
-}
-
-.cartItem {
-  display: flex;
-  align-items: center;
-  border: 2px solid #d8d8d886;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 20px;
-  margin-bottom: 20px;
-  // img > {
-  //   margin-right: 20px;
-  // }
-  div {
-    margin-right: 20px;
-  }
-  div {
-    p {
-      margin: 0;
-      font-size: 16px;
-    }
-    b {
-      font-size: 14px;
-    }
-  }
-  .removeBtn {
-    opacity: 0.6;
-    transition: opacity 0.15s ease-in-out;
-    cursor: pointer;
-    &:hover {
-      opacity: 1;
-    }
-  }
-  .cartItemImg {
-    height: 70px;
-    width: 70px;
-    background-size: contain; //важные моменты
-    background-position: 0 3px;
-    background-repeat: no-repeat;
-    margin-right: 20px;
-  }
-}
-.items {
-  flex: 1;
-}
-
 .cartEmpty {
   text-align: center;
-  p {
-    width: 288px;
-    line-height: 24px;
-  }
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  margin: auto;
+  // p {
+  //   width: 288px;
+  //   line-height: 24px;
+  // }
 
   .greenButton {
     width: 245px;
     margin-top: 20px;
- 
+
     &:hover {
       img {
         transform: rotate(180deg) translateX(3px);
@@ -278,20 +221,8 @@ header {
       position: relative;
       top: 1px;
       transform: rotate(180deg);
-      margin-right: 15px;
+      left: -15px;
       transition: transform 0.15s ease-in-out;
     }
-  }
-}
-
-@keyframes button-loading {
-  0% {
-    opacity: 1;
-  }
-  50%{
-    opacity: 0.5;
-  }
-  100%{
-    opacity: 1;
   }
 }

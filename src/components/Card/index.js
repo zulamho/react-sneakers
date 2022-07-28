@@ -13,15 +13,16 @@ function Card({
   favorited = false,
   loading = false,
 }) {
-  const { isProductAdded } = React.useContext(AppContext);
+  const { isProductAdded, isProductFavorited} = React.useContext(AppContext);
   const [isFavorite, setIsFaforite] = React.useState(favorited);
+  const product = { id,parentId: id,  imgUrl, title, price }
   // const [isAded, setIsAded] = React.useState(added);
 
   const onClickPlus = () => {
-    onPlus({ id, imgUrl, title, price });
+    onPlus(product);
   };
   const onClickLike = () => {
-    onClickFavorite({ id, imgUrl, title, price });
+    onClickFavorite(product);
     setIsFaforite(!isFavorite);
   };
 
@@ -49,7 +50,7 @@ function Card({
               <img
                 onClick={onClickLike}
                 src={
-                  isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"
+                  isProductFavorited(id) ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"
                 }
                 alt="Unliked"
               />
@@ -60,7 +61,7 @@ function Card({
           <div className={styles.cardButtom}>
             <div className="price">
               <span>Цена:</span>
-              <b> {price}</b>
+              <b> {price} руб.</b>
             </div>
             {onPlus && (
               <img
