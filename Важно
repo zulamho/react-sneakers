@@ -93,3 +93,5 @@ key prop vajno https://www.youtube.com/watch?v=OtAlPwW8DNU
 
 
     react transition
+
+     onClickFavorite={(product) => onAddFavorite(product)}

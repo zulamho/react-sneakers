@@ -17,7 +17,7 @@ const {favorites} = React.useContext(AppContext)
             key={index}
             favorited={true}
             {...product}
-            onClickFavorite={(product) => onAddFavorite(product)}
+            // onClickFavorite={(product) => onAddFavorite(product)}
             // onPlus={(product) => onAddToCart(product)}
           />
         ))}

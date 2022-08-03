@@ -23,8 +23,6 @@ function Home({
       (product, index) => (
         <Card
           key={index}
-          onClickFavorite={(product) => onAddFavorite(product)}
-          onPlus={(product) => onAddToCart(product)}
           loading={isLoading}
           {...product}
         />

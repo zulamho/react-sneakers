@@ -8,6 +8,8 @@ import Drawer from "./components/Drawer";
 import AppContext from "./context";
 import Orders from "./pages/Orders";
 
+
+
 function App() {
   const [products, setProducts] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
@@ -66,22 +68,22 @@ function App() {
           `https://62b339dda36f3a973d1e470f.mockapi.io/cart/${findProduct.id}`
         );
       } else {
-        
         setCartProducts((prev) => [...prev, product]); ///важно
         const { data } = await await axios.post(
           "https://62b339dda36f3a973d1e470f.mockapi.io/cart",
           product
         );
-        setCartProducts((prev) => prev.map((item)=>{
-          if(item.parentId === data.parentId){
-            return{
-              ...item,
-              id: data.id
+        setCartProducts((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
             }
-
-          }
-          return item
-        })); ///важно
+            return item;
+          })
+        ); ///важно
       }
     } catch (error) {
       alert("Не удалось добавить товар в корзиину");
@@ -128,8 +130,8 @@ function App() {
   const onChangeSearchInput = (event) => {
     setSearchProduct(event.target.value);
   };
-  const isProductFavorited= (id) => {
-    return favorites.some((item) => Number(item.id) === Number(id));
+  const isProductFavorited = (id) => {
+    return favorites.some((item) => Number(item.parentId) === Number(id));
   };
 
   const isProductAdded = (id) => {
@@ -151,6 +153,8 @@ function App() {
       }}
     >
       <div className="wrapper ">
+{/*         
+      <CaroselBox /> */}
         <Drawer
           onClose={() => setCartOpened(false)}
           onRemove={onRemoveProductCart}
@@ -166,6 +170,7 @@ function App() {
         )} */}
 
         <Header onClickCart={() => setCartOpened(true)} />
+
         <Routes>
           <Route
             path="/"
